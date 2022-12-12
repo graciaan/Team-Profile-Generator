@@ -12,11 +12,23 @@ function promptCreator() {
         {
           name: "employeeChoice",
           message: "Please select the employee type that you wish to add to your team:",
-          choices: ["Manager", "Intern", "Engineer"],
+          choices: ["Manager", "Intern", "Engineer", "No More Employees to Add"],
           type: "list"
         }
       ]
     )
+    // console.log(data.employeeChoice)
+    .then(function(data){
+      if (`${data.employeeChoice}` === "Manager"){
+        return managerPrompts();
+      } else if (`${data.employeeChoice}` === "Intern"){
+        return internPrompts();
+      } else if (`${data.employeeChoice}` === "Engineer"){
+        return engineerPrompts();
+      } else {
+        return //insert function here
+      }
+    })
   };
   
   function managerPrompts() {
@@ -47,6 +59,7 @@ function promptCreator() {
         }
       ]
     )
+    // return employeeType();
   };
 
   function internPrompts() {
@@ -77,6 +90,7 @@ function promptCreator() {
         }
       ]
     )
+    // employeeType();
   };
 
   function engineerPrompts() {
@@ -107,11 +121,13 @@ function promptCreator() {
         }
       ]
     )
+    // employeeType();
   };
 
+  employeeType()
 }
 
-
+promptCreator()
 
 
 // function init() {
