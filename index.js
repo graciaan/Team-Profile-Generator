@@ -3,6 +3,7 @@ const fs = require("fs");
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
+const teamTemplate = require("./src/teamtemplate.js")
 
 teamArr = []
 
@@ -26,7 +27,7 @@ function promptCreator() {
       } else if (`${data.employeeChoice}` === "Engineer"){
         return engineerPrompts();
       } else {
-        return //insert function here
+        return siteGenerator();
       }
     })
   };
@@ -41,7 +42,7 @@ function promptCreator() {
         },
 
         {
-          name: "mangerId",
+          name: "managerId",
           message: "What is the ID number of this Manager?",
           type: "text"
         },
@@ -142,8 +143,16 @@ function promptCreator() {
 promptCreator()
 
 function siteGenerator() {
-  
-}
+  fs.writeFile('./dist/index.html', teamTemplate(teamArr), err => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("index.html successfully created!")
+    }
+  } )
+};
+
+
 // function init() {
 //   inquirer.prompt(questions).then(function(userInput) {
 //     const markdown = generateMarkdown(userInput)

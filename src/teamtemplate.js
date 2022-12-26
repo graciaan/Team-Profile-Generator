@@ -7,7 +7,7 @@ const teamCombiner = team => {
           <h2 class="card-title">${manager.getName()}</h2>
           <h3 class="card-title">${manager.getRole()}</h3>
       </div>
-      <div class="bg-success text-white">
+      <div class="bg-success text-black">
         <ul class="list-group">
             <li class="list-group-item">ID: ${manager.getId()}</li>
             <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
@@ -24,7 +24,7 @@ const teamCombiner = team => {
         <h2 class="card-title">${intern.getName()}</h2>
         <h3 class="card-title">${intern.getRole()}</h3>
       </div>
-      <div class="bg-success text-white">
+      <div class="bg-success text-black">
         <ul class="list-group">
           <li class="list-group-item">ID: ${intern.getId()}</li>
           <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
@@ -41,7 +41,7 @@ const teamCombiner = team => {
         <h2 class="card-title">${engineer.getName()}</h2>
         <h3 class="card-title">${engineer.getRole()}</h3>
       </div>
-      <div class="bg-success text-white">
+      <div class="bg-success text-black">
         <ul class="list-group">
           <li class="list-group-item">ID: ${engineer.getId()}</li>
           <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
@@ -89,7 +89,7 @@ module.exports = team => {
   <body>
     <div class="container-fluid">
       <div class="row">
-          <div class="col-12 jumbotron mb-3 team-heading bg-danger">
+          <div class="col-12 mb-3 team-heading bg-danger">
               <h1 class="text-center text-white">My Team</h1>
           </div>
       </div>
