@@ -1,8 +1,9 @@
 const teamCombiner = team => {
 
+  //html code to be used when a manager is selected as part of the employee prompts
   const generateManager = manager => {
     return `
-    <div class="card">
+    <div class="card shadow m-2">
       <div class="card-header bg-primary text-white">
           <h2 class="card-title">${manager.getName()}</h2>
           <h3 class="card-title">${manager.getRole()}</h3>
@@ -17,9 +18,10 @@ const teamCombiner = team => {
     </div>`;
   };
 
+  //html code to be used when an intern is selected as part of the employee prompts
   const generateIntern = intern => {
     return `
-    <div class="card">
+    <div class="card shadow m-2">
       <div class="card-header bg-primary text-white">
         <h2 class="card-title">${intern.getName()}</h2>
         <h3 class="card-title">${intern.getRole()}</h3>
@@ -34,9 +36,10 @@ const teamCombiner = team => {
     </div>`;
 };
 
+  //html code to be used when an engineer is selected as part of the employee prompts
   const generateEngineer = engineer => {
     return `
-    <div class="card">
+    <div class="card shadow m-2">
       <div class="card-header bg-primary text-white">
         <h2 class="card-title">${engineer.getName()}</h2>
         <h3 class="card-title">${engineer.getRole()}</h3>

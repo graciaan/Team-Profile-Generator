@@ -1,3 +1,4 @@
+//set of requirements needed to run everything
 const inquirer = require("inquirer");
 const fs = require("fs");
 const Manager = require("./lib/manager");
@@ -5,8 +6,10 @@ const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
 const teamTemplate = require("./src/teamtemplate.js")
 
+//creates a blank array to have all the responses to the prompts pushed in to
 teamArr = []
 
+//this function creates all of the prompts needed to gather the necessry information
 function promptCreator() {
   function employeeType() {
     inquirer.prompt(
@@ -19,6 +22,7 @@ function promptCreator() {
         }
       ]
     )
+    //if statements that help guide the user through the different categories of employees
     .then(function(data){
       if (`${data.employeeChoice}` === "Manager"){
         return managerPrompts();
@@ -31,7 +35,7 @@ function promptCreator() {
       }
     })
   };
-  
+  //generates the prompt questions for the manager employee type
   function managerPrompts() {
     inquirer.prompt(
       [
@@ -60,13 +64,15 @@ function promptCreator() {
         }
       ]
     )
+    //pushes all of the data from the manager prompts in to the teamArr array and runs the prompts again to add info for another employee
     .then(function(responses) {
       const manager = new Manager(responses.managerName, responses.managerId, responses.managerEmail, responses.managerOffice);
       teamArr.push(manager);
       employeeType();
     })
   };
-
+  
+  //generates the prompt questions for the intern employee type
   function internPrompts() {
     inquirer.prompt(
       [
@@ -95,6 +101,7 @@ function promptCreator() {
         }
       ]
     )
+    //pushes all of the data from the intern prompts in to the teamArr array and runs the prompts again to add info for another employee
     .then(function(responses) {
       const intern = new Intern(responses.internName, responses.internId, responses.internEmail, responses.internSchool);
       teamArr.push(intern);
@@ -102,6 +109,7 @@ function promptCreator() {
     })
   };
 
+  //generates the prompt questions for the engineer employee type
   function engineerPrompts() {
     inquirer.prompt(
       [
@@ -130,18 +138,21 @@ function promptCreator() {
         }
       ]
     )
+    //pushes all of the data from the engineer prompts in to the teamArr array and runs the prompts again to add info for another employee
     .then(function(responses) {
       const engineer = new Engineer(responses.engineerName, responses.engineerId, responses.engineerEmail, responses.engineerGitHub);
       teamArr.push(engineer);
       employeeType();
     })
   };
-
+  
   employeeType()
 }
 
+//calls the function that runs all of the prompts
 promptCreator()
 
+//function that writes the html file with all of the data collected through the prompts. it pulls from the teamTemplate page that has further code for the html file
 function siteGenerator() {
   fs.writeFile('./dist/index.html', teamTemplate(teamArr), err => {
     if (err) {
