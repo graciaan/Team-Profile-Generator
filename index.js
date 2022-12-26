@@ -4,6 +4,7 @@ const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 const Engineer = require("./lib/engineer");
 
+teamArr = []
 
 function promptCreator() {
   function employeeType() {
@@ -17,7 +18,6 @@ function promptCreator() {
         }
       ]
     )
-    // console.log(data.employeeChoice)
     .then(function(data){
       if (`${data.employeeChoice}` === "Manager"){
         return managerPrompts();
@@ -59,7 +59,11 @@ function promptCreator() {
         }
       ]
     )
-    // return employeeType();
+    .then(function(responses) {
+      const manager = new Manager(responses.managerName, responses.managerId, responses.managerEmail, responses.managerOffice);
+      teamArr.push(manager);
+      employeeType();
+    })
   };
 
   function internPrompts() {
@@ -90,7 +94,11 @@ function promptCreator() {
         }
       ]
     )
-    // employeeType();
+    .then(function(responses) {
+      const intern = new Intern(responses.internName, responses.internId, responses.internEmail, responses.internSchool);
+      teamArr.push(intern);
+      employeeType();
+    })
   };
 
   function engineerPrompts() {
@@ -121,7 +129,11 @@ function promptCreator() {
         }
       ]
     )
-    // employeeType();
+    .then(function(responses) {
+      const engineer = new Engineer(responses.engineerName, responses.engineerId, responses.engineerEmail, responses.engineerGitHub);
+      teamArr.push(engineer);
+      employeeType();
+    })
   };
 
   employeeType()
@@ -129,7 +141,9 @@ function promptCreator() {
 
 promptCreator()
 
-
+function siteGenerator() {
+  
+}
 // function init() {
 //   inquirer.prompt(questions).then(function(userInput) {
 //     const markdown = generateMarkdown(userInput)
